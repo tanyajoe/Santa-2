@@ -1,14 +1,16 @@
 /// <reference types="cypress" />
 
-context("example to enter the site", () => {
+context("main page", () => {
   //it("visit site", () => {
   //cy.visit("https://staging.lpitko.ru");
   //});
 
   it("displays the site", () => {
-    cy.visit("https://staging.lpitko.ru");
+    cy.visit('/');
     cy.get(".header-item__text span").should("be.visible");
   });
+
+  
 });
 
 //describe('empty spec', () => {
