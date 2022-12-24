@@ -7,7 +7,10 @@
     "cy:open": "npx cypress open",
     "cy:run": "npx cypress run",
     "cy:dashboard": "npx cypress run --record --key dfd323b2-baf8-4830-827c-a313a25ae33b",
-    "cy:run:first": "npm run cy:run --spec cypress/e2e/first.cy.js",
+    "cy:run:1": "npx cypress run --config-file cypress-prod.config.js --spec cypress/e2e/santa-1.cy.js --browser chrome --record --key dfd323b2-baf8-4830-827c-a313a25ae33b",
+    "cy:run:2": "npx cypress run --config-file cypress-prod.config.js --spec cypress/e2e/santa-2.cy.js --browser electron --record --key dfd323b2-baf8-4830-827c-a313a25ae33b",
+    "cy:run:all": "npm run cy:run:1 && npm run cy:run:2",
+    "cy:run:all:dashboard": "npm run cy:run:1 && npm run cy:run:2",
     "cy:dashbord:prod": "npx cypress run --config-file cypress-prod.config.js --record --key dfd323b2-baf8-4830-827c-a313a25ae33b"
   },
   "keywords": [
