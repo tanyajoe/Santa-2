@@ -23,3 +23,29 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+//Cypress.Commands.add("enterText", (selector, text) => {
+//  cy.get(selector).type(`${text}{enter}`);
+//});
+
+Cypress.Commands.add(
+  "login",
+  (selectorForEmail, selectorForPass, selectorButton, email, pass) => {
+    cy.visit("/login");
+    cy.get(selectorForEmail).type(email);
+    cy.get(selectorForPass).type(pass);
+    cy.get(selectorButton).click();
+  }
+);
+
+Cypress.Commands.add("goToEndpoint", (selectorToEndpoint) => {
+  cy.get(selectorToEndpoint).click();
+});
+
+Cypress.Commands.add("urlContains", (endpoint) => {
+  cy.url().should("contain", Cypress.config("baseUrl") && endpoint);
+});
+
+Cypress.Commands.add("elementIsVisible", (selectorVisible) => {
+  cy.get(selectorVisible).should("be.visible");
+});
