@@ -12,6 +12,10 @@ describe("User is authorized", () => {
       );
     });
 
+    afterEach(() => {
+      cy.visit("/");
+    });
+
     it("check boxes", () => {
       cy.goToEndpoint(
         "#root > div.layout-1 > section.layout-1__header-wrapper-fixed > header > section > div > div > a:nth-child(1) > div"
