@@ -1,3 +1,4 @@
+// const textData = require("../fixtures/checkendpoints.json");
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite
@@ -38,6 +39,10 @@ Cypress.Commands.add(
   }
 );
 
+/* Cypress.Commands.add("goToEndpoint", (selectorToEndpoint) => {
+  cy.get(selectorToEndpoint).click();
+}); */
+
 Cypress.Commands.add("goToEndpoint", (selectorToEndpoint) => {
   cy.get(selectorToEndpoint).click();
 });
@@ -49,3 +54,42 @@ Cypress.Commands.add("urlContains", (endpoint) => {
 Cypress.Commands.add("elementIsVisible", (selectorVisible) => {
   cy.get(selectorVisible).should("be.visible");
 });
+
+Cypress.Commands.add("inputName", (inputForName, userName) => {
+  cy.get(inputForName).type(userName);
+});
+
+Cypress.Commands.add("inputEmail", (inputForEmail, userEmail) => {
+  cy.get(inputForEmail).type(userEmail);
+});
+
+Cypress.Commands.add("inputPass", (inputForPass, userPass) => {
+  cy.get(inputForPass).type(userPass);
+});
+
+Cypress.Commands.add("positiveLogin", (buttonToLogin, selectorAccount) => {
+  cy.get(buttonToLogin).click();
+  cy.get(selectorAccount).should("be.visible");
+});
+
+Cypress.Commands.add("negativeLogin", (buttonToLogin, selectorFalseLogin) => {
+  cy.get(buttonToLogin).click();
+  cy.get(buttonToLogin).should("be.visible");
+  cy.get(selectorFalseLogin).should("be.visible");
+});
+
+Cypress.Commands.add(
+  "positiveRegistrate",
+  (buttonToRegistrate, selectorTrueRegistration) => {
+    cy.get(buttonToRegistrate).click();
+    cy.get(selectorTrueRegistration).should("be.visible");
+  }
+);
+
+Cypress.Commands.add(
+  "negativeRegistrate",
+  (buttonToRegistrate, selectorFalseRegistration) => {
+    cy.get(buttonToRegistrate).click();
+    cy.get(selectorFalseRegistration).should("be.visible");
+  }
+);
