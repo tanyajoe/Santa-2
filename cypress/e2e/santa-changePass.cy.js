@@ -12,10 +12,10 @@ describe("santa login - UI and API", () => {
         
         cy.visit("/");
         cy.contains("Вход и регистрация").click({force: true});
-        currentLoginPage.login("tanyajoooe@gmail.com", oldPassword)
-        //cy.get(loginPageElements.loginField).type("tanyajoooe@gmail.com");
-        //cy.get(loginPageElements.passwordField).type(oldPassword);
-        //cy.get(loginPageElements.loginButton).click();
+        //currentLoginPage.login("tanyajoooe@gmail.com", oldPassword)
+        cy.get(loginPageElements.loginField).type("tanyajoooe@gmail.com");
+        cy.get(loginPageElements.passwordField).type(oldPassword);
+        cy.get(loginPageElements.loginButton).click();
     
         cy.contains("Коробки").should("exist");
         /* cy.get('.layout-1__header-wrapper-fixed > .layout-1__header > .header > .header__items > .layout-row-start > [href="/account"] > .header-item').click();
@@ -27,11 +27,11 @@ describe("santa login - UI and API", () => {
 
         cy.visit("/");
         cy.contains("Вход и регистрация").click({force: true});
-        currentLoginPage.login("tanyajoooe@gmail.com", oldPassword)
+        //currentLoginPage.login("tanyajoooe@gmail.com", oldPassword)
 
-        //cy.get(loginPageElements.loginField).type("tanyajoooe@gmail.com");
-        //cy.get(loginPageElements.passwordField).type(oldPassword);
-        //cy.get(loginPageElements.loginButton).click();
+        cy.get(loginPageElements.loginField).type("tanyajoooe@gmail.com");
+        cy.get(loginPageElements.passwordField).type(oldPassword);
+        cy.get(loginPageElements.loginButton).click();
 
         cy.contains("Неверное имя пользователя или пароль").should("exist");
 
@@ -90,3 +90,6 @@ describe("santa login - UI and API", () => {
         cy.contains("Коробки").should("exist");
     })
 })
+
+
+//bubhbjhbjh
