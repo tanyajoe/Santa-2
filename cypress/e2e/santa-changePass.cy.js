@@ -41,7 +41,7 @@ describe("santa login - UI and API", () => {
         cy.changePassword(oldPassword);
     })
 
-    it.only("user can not login with old password - API, UI", () => {
+    it("user can not login with old password - API, UI", () => {
         let newPassword = faker.internet.password();
         cy.log(newPassword);
 
