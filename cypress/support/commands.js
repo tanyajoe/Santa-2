@@ -29,7 +29,7 @@
 //  cy.get(selector).type(`${text}{enter}`);
 //});
 
-Cypress.Commands.add(
+/* Cypress.Commands.add(
   "login",
   (selectorForEmail, selectorForPass, selectorButton, email, pass) => {
     cy.visit("/login");
@@ -37,7 +37,23 @@ Cypress.Commands.add(
     cy.get(selectorForPass).type(pass);
     cy.get(selectorButton).click();
   }
-);
+); */
+
+Cypress.Commands.add('login', (email, password) => {
+  cy.visit("/");
+  cy.contains("Вход и регистрация").click({force: true});
+  cy.get(':nth-child(3) > .frm').type(email);
+  cy.get(':nth-child(4) > .frm').type(password);
+  cy.get('.btn-main').click();
+})
+
+
+Cypress.Commands.add('changePassword', (newPassword) => {
+  cy.get('.layout-1__header-wrapper-fixed > .layout-1__header > .header > .header__items > .layout-row-start > [href="/account"] > .header-item').click();
+  cy.get('.layout-column-start > :nth-child(1) > .frm').type(newPassword);
+  cy.get(':nth-child(4) > .form-page-group__main > .layout-column-start > :nth-child(2) > .frm').type(newPassword);
+  cy.get('.layout-row-end > .btn-service').click();
+})
 
 /* Cypress.Commands.add("goToEndpoint", (selectorToEndpoint) => {
   cy.get(selectorToEndpoint).click();
