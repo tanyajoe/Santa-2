@@ -55,6 +55,19 @@ Cypress.Commands.add('changePassword', (newPassword) => {
   cy.get('.layout-row-end > .btn-service').click();
 })
 
+Cypress.Commands.add('APIchangePassword', (newPassword) => {
+  cy.request({
+    method: "PUT",
+    headers: {
+        Cookie: "_ym_uid=1672941084407187915; _ym_d=1672941084; connect.sid=s:DZIEy9JUcAAfsj6o6cgjC4roNwPHTx8r.2gXiO9cF56EAGIofImimSDhB44eWlXbKOls4zL3jmss; _ym_isad=1; jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQ5MTYzMTEsImlhdCI6MTY3MzEyMjA2NiwiZXhwIjoxNjc1NzE0MDY2fQ.5Np7u4y_jZPYypGLgzcu6WiMfHa3lV8fRyWhVhiiEck"
+    },
+    url: "https://santa-secret.ru/api/account/password",
+    body: { "password": newPassword }
+}).then((response) => {
+    expect(response.status).to.equal(200);
+})
+})
+
 /* Cypress.Commands.add("goToEndpoint", (selectorToEndpoint) => {
   cy.get(selectorToEndpoint).click();
 }); */

@@ -41,11 +41,13 @@ describe("santa login - UI and API", () => {
         cy.changePassword(oldPassword);
     })
 
-    it("user can not login with old password - API, UI", () => {
+    it.only("user can not login with old password - API, UI", () => {
         let newPassword = faker.internet.password();
         cy.log(newPassword);
 
-        cy.request({
+        cy.APIchangePassword(newPassword);
+
+/*         cy.request({
             method: "PUT",
             headers: {
                 Cookie: "_ym_uid=1672941084407187915; _ym_d=1672941084; connect.sid=s:DZIEy9JUcAAfsj6o6cgjC4roNwPHTx8r.2gXiO9cF56EAGIofImimSDhB44eWlXbKOls4zL3jmss; _ym_isad=1; jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQ5MTYzMTEsImlhdCI6MTY3MzEyMjA2NiwiZXhwIjoxNjc1NzE0MDY2fQ.5Np7u4y_jZPYypGLgzcu6WiMfHa3lV8fRyWhVhiiEck"
@@ -54,7 +56,8 @@ describe("santa login - UI and API", () => {
             body: { "password": newPassword }
         }).then((response) => {
             expect(response.status).to.equal(200);
-        })
+        }) */
+
         cy.visit("/");
         cy.contains("Вход и регистрация").click({force: true});
         currentLoginPage.login("tanyajoooe@gmail.com", oldPassword);
@@ -68,7 +71,9 @@ describe("santa login - UI and API", () => {
         cy.get('.layout-1__header-wrapper-fixed > .layout-1__header > .header > .header__items > .layout-row-start > [href="/account"] > .header-item').click({force: true});
         cy.contains("Выйти с сайта").click();
 
-        cy.request({
+        cy.APIchangePassword(oldPassword);
+
+  /*       cy.request({
             method: "PUT",
             headers: {
                 Cookie: "_ym_uid=1672941084407187915; _ym_d=1672941084; connect.sid=s:DZIEy9JUcAAfsj6o6cgjC4roNwPHTx8r.2gXiO9cF56EAGIofImimSDhB44eWlXbKOls4zL3jmss; _ym_isad=1; jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQ5MTYzMTEsImlhdCI6MTY3MzEyMjA2NiwiZXhwIjoxNjc1NzE0MDY2fQ.5Np7u4y_jZPYypGLgzcu6WiMfHa3lV8fRyWhVhiiEck"
@@ -77,7 +82,8 @@ describe("santa login - UI and API", () => {
             body: { "password": oldPassword }
         }).then((response) => {
             expect(response.status).to.equal(200);
-        })
+        }) */
+
         cy.visit("/");
         cy.contains("Вход и регистрация").click({force: true});
         currentLoginPage.login("tanyajoooe@gmail.com", oldPassword)
