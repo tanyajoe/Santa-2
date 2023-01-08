@@ -96,29 +96,43 @@ Cypress.Commands.add("inputPass", (inputForPass, userPass) => {
   cy.get(inputForPass).type(userPass);
 });
 
-Cypress.Commands.add("positiveLogin", (buttonToLogin, selectorAccount) => {
-  cy.get(buttonToLogin).click();
-  cy.get(selectorAccount).should("be.visible");
+
+
+Cypress.Commands.add("dataInputForLogin", (loginSelector, login, passwordSelector, password, btnLoginSelector) => {
+  cy.get(loginSelector).type(login);
+  cy.get(passwordSelector).type(password);
+  cy.get(btnLoginSelector).click();
+  });
+
+Cypress.Commands.add("checkTrueLogin", () => {
+  cy.contains("Коробки").should("exist");
 });
 
-Cypress.Commands.add("negativeLogin", (buttonToLogin, selectorFalseLogin) => {
-  cy.get(buttonToLogin).click();
-  cy.get(buttonToLogin).should("be.visible");
-  cy.get(selectorFalseLogin).should("be.visible");
+Cypress.Commands.add("checkFalseLogin", (buttonToLogin, selectorFalseLogin) => {
+  cy.contains("Войти").should("exist");
 });
 
-Cypress.Commands.add(
-  "positiveRegistrate",
-  (buttonToRegistrate, selectorTrueRegistration) => {
-    cy.get(buttonToRegistrate).click();
-    cy.get(selectorTrueRegistration).should("be.visible");
-  }
-);
 
-Cypress.Commands.add(
-  "negativeRegistrate",
-  (buttonToRegistrate, selectorFalseRegistration) => {
-    cy.get(buttonToRegistrate).click();
-    cy.get(selectorFalseRegistration).should("be.visible");
-  }
-);
+
+
+
+
+
+Cypress.Commands.add("dataInputForRegistration", (nameSelector, name, emailSelector, email, btnRegistrateSelector) => {
+  cy.get(nameSelector).type(name);
+  cy.get(emailSelector).type(email);
+  cy.get(btnRegistrateSelector).click();
+  });
+
+  Cypress.Commands.add(
+    "checkTrueRegistrate", () => {
+      cy.contains("Письмо отправлено!").should("exist");
+    }
+  );
+  
+  Cypress.Commands.add(
+    "checkFalseRegistrate",
+    () => {
+      cy.contains("Некорректное поле").should("exist");
+    }
+  );

@@ -9,100 +9,63 @@ describe("Registration form", () => {
 
   context("Positive tests", () => {
     it("Registrate with true name and email", () => {
-      cy.inputName(Cypress.env("selectorRegName"), regData[0].name);
-      cy.inputEmail(Cypress.env("selectorRegEmail"), regData[0].email);
-      cy.positiveRegistrate(
-        Cypress.env("selectorButtonToReg"),
-        Cypress.env("selectorTrueReg")
-      );
+      cy.dataInputForRegistration(Cypress.env("selectorRegName"), regData[0].name, Cypress.env("selectorRegEmail"), regData[0].email, Cypress.env("selectorButtonToReg"));
+      cy.checkTrueRegistrate();
     });
 
     it("Registrate with 63 symbols true name", () => {
-      cy.inputName(Cypress.env("selectorRegName"), regData[1].name);
-      cy.inputEmail(Cypress.env("selectorRegEmail"), regData[1].email);
-      cy.positiveRegistrate(
-        Cypress.env("selectorButtonToReg"),
-        Cypress.env("selectorTrueReg")
-      );
+      cy.dataInputForRegistration(Cypress.env("selectorRegName"), regData[1].name, Cypress.env("selectorRegEmail"), regData[1].email, Cypress.env("selectorButtonToReg"));
+      cy.checkTrueRegistrate();
+
     });
 
     it("Registrate with 64 symbols true name", () => {
-      cy.inputName(Cypress.env("selectorRegName"), regData[2].name);
-      cy.inputEmail(Cypress.env("selectorRegEmail"), regData[2].email);
-      cy.positiveRegistrate(
-        Cypress.env("selectorButtonToReg"),
-        Cypress.env("selectorTrueReg")
-      );
+      cy.dataInputForRegistration(Cypress.env("selectorRegName"), regData[2].name, Cypress.env("selectorRegEmail"), regData[2].email, Cypress.env("selectorButtonToReg"));
+      cy.checkTrueRegistrate();
     });
 
     it("Registrate with 2 symbols true name", () => {
-      cy.inputName(Cypress.env("selectorRegName"), regData[3].name);
-      cy.inputEmail(Cypress.env("selectorRegEmail"), regData[3].email);
-      cy.positiveRegistrate(
-        Cypress.env("selectorButtonToReg"),
-        Cypress.env("selectorTrueReg")
-      );
+      cy.dataInputForRegistration(Cypress.env("selectorRegName"), regData[3].name, Cypress.env("selectorRegEmail"), regData[3].email, Cypress.env("selectorButtonToReg"));
+      cy.checkTrueRegistrate();
     });
   });
 
   context("Negative tests", () => {
     it("Registrate with empty fields", () => {
-      cy.negativeRegistrate(
-        Cypress.env("selectorButtonToReg"),
-        Cypress.env("selectorFalseReg")
-      );
+      cy.get(Cypress.env("selectorButtonToReg")).click();
+      cy.checkFalseRegistrate(Cypress.env("selectorFalseReg"));
     });
 
     it("Registrate with email without @", () => {
-      cy.inputName(Cypress.env("selectorRegName"), regData[4].name);
-      cy.inputEmail(Cypress.env("selectorRegEmail"), regData[4].email);
-      cy.negativeRegistrate(
-        Cypress.env("selectorButtonToReg"),
-        Cypress.env("selectorFalseReg")
-      );
+      cy.dataInputForRegistration(Cypress.env("selectorRegName"), regData[4].name, Cypress.env("selectorRegEmail"), regData[4].email, Cypress.env("selectorButtonToReg"));
+      cy.checkFalseRegistrate(Cypress.env("selectorFalseReg"));
     });
 
     it("Registrate with registrated email", () => {
-      cy.inputName(Cypress.env("selectorRegName"), regData[5].name);
-      cy.inputEmail(Cypress.env("selectorRegEmail"), regData[5].email);
-      cy.negativeRegistrate(
-        Cypress.env("selectorButtonToReg"),
-        Cypress.env("selectorFalseReg")
-      );
+      cy.dataInputForRegistration(Cypress.env("selectorRegName"), regData[5].name, Cypress.env("selectorRegEmail"), regData[5].email, Cypress.env("selectorButtonToReg"));
+      cy.contains("Такой пользователь уже зарегистрирован. Войти?").should("exist");
     });
 
     it("Registrate with empty field for name", () => {
-      cy.inputEmail(Cypress.env("selectorRegEmail"), regData[6].email);
-      cy.negativeRegistrate(
-        Cypress.env("selectorButtonToReg"),
-        Cypress.env("selectorFalseReg")
-      );
+      cy.get(Cypress.env("selectorRegEmail")).type(regData[6].email);
+      cy.get(Cypress.env("selectorButtonToReg")).click();
+      cy.checkFalseRegistrate(Cypress.env("selectorFalseReg"));
     });
 
     it("Registrate with empty field for email", () => {
-      cy.inputName(Cypress.env("selectorRegName"), regData[7].name);
-      cy.negativeRegistrate(
-        Cypress.env("selectorButtonToReg"),
-        Cypress.env("selectorFalseReg")
-      );
+      cy.get(Cypress.env("selectorRegName")).type(regData[7].name)
+      cy.get(Cypress.env("selectorButtonToReg")).click();
+      cy.checkFalseRegistrate(Cypress.env("selectorFalseReg"));
     });
 
     it("Registrate with name with 1 symbol", () => {
-      cy.inputName(Cypress.env("selectorRegName"), regData[8].name);
-      cy.inputEmail(Cypress.env("selectorRegEmail"), regData[8].email);
-      cy.negativeRegistrate(
-        Cypress.env("selectorButtonToReg"),
-        Cypress.env("selectorFalseReg")
-      );
+      cy.dataInputForRegistration(Cypress.env("selectorRegName"), regData[8].name, Cypress.env("selectorRegEmail"), regData[8].email, Cypress.env("selectorButtonToReg"));
+      cy.checkFalseRegistrate(Cypress.env("selectorFalseReg"));
     });
 
     it("Registrate with name with 65 symbol", () => {
-      cy.inputName(Cypress.env("selectorRegName"), regData[9].name);
-      cy.inputEmail(Cypress.env("selectorRegEmail"), regData[9].email);
-      cy.negativeRegistrate(
-        Cypress.env("selectorButtonToReg"),
-        Cypress.env("selectorFalseReg")
-      );
+      cy.dataInputForRegistration(Cypress.env("selectorRegName"), regData[9].name, Cypress.env("selectorRegEmail"), regData[9].email, Cypress.env("selectorButtonToReg"));
+      cy.checkFalseRegistrate(Cypress.env("selectorFalseReg"));
     });
   });
 });
