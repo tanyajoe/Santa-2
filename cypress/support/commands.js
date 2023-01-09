@@ -68,6 +68,51 @@ Cypress.Commands.add('APIchangePassword', (newPassword) => {
 })
 })
 
+
+
+Cypress.Commands.add('ApiCreateBox', (nameBox, idBox) =>{
+  cy.request({
+    method: "POST",
+    headers: {
+        Cookie: "_ym_uid=1672941084407187915; _ym_d=1672941084; connect.sid=s:DZIEy9JUcAAfsj6o6cgjC4roNwPHTx8r.2gXiO9cF56EAGIofImimSDhB44eWlXbKOls4zL3jmss; _ym_isad=1; jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQ5MTYzMTEsImlhdCI6MTY3MzEyMjA2NiwiZXhwIjoxNjc1NzE0MDY2fQ.5Np7u4y_jZPYypGLgzcu6WiMfHa3lV8fRyWhVhiiEck"
+    },
+    url: "https://santa-secret.ru/api/box",
+    body: {
+      "email": null,
+      "name": nameBox,
+      "key": idBox,
+      "picture": "tree",
+      "usePost": false,
+      "useCashLimit": false,
+      "cashLimit": null,
+      "cashLimitCurrency": null,
+      "useWish": false,
+      "useCircleDraw": null,
+      "isInviteAfterDraw": null,
+      "isArchived": null,
+      "createAdminCard": null,
+      "isCreated": true,
+      "useNames": false,
+      "isPhoneRequired": false,
+      "logo": null
+  }
+}).then((response) => {
+    expect(response.status).to.equal(200);
+})
+})
+
+Cypress.Commands.add('ApiDeleteBox', (ApiUrl) =>{
+  cy.request({
+    method: "DELETE",
+    headers: {
+        Cookie: "_ym_uid=1672941084407187915; _ym_d=1672941084; connect.sid=s:DZIEy9JUcAAfsj6o6cgjC4roNwPHTx8r.2gXiO9cF56EAGIofImimSDhB44eWlXbKOls4zL3jmss; _ym_isad=1; jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQ5MTYzMTEsImlhdCI6MTY3MzEyMjA2NiwiZXhwIjoxNjc1NzE0MDY2fQ.5Np7u4y_jZPYypGLgzcu6WiMfHa3lV8fRyWhVhiiEck"
+    },
+    url: ApiUrl
+}).then((response) => {
+    expect(response.status).to.equal(200);
+})
+})
+
 /* Cypress.Commands.add("goToEndpoint", (selectorToEndpoint) => {
   cy.get(selectorToEndpoint).click();
 }); */

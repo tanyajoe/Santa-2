@@ -1,6 +1,7 @@
 const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
+  pageLoadTimeout: 100000,
   projectId: "y3kdb2",
   env: {
     email: "islmstosk@gmail.com",

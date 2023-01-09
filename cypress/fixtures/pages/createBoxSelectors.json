@@ -1,0 +1,20 @@
+{
+    "btnToCreateBox": ".toggle-menu-button--inner",
+    "pictureSelector1": ":nth-child(1) > .picture_svg_wrapper > .svg > svg",
+    "pictureSelector2": ":nth-child(2) > .picture_svg_wrapper > .svg > svg",
+    "pictureSelector3": ":nth-child(3) > .picture_svg_wrapper > .svg > svg",
+    "pictureSelector4": ":nth-child(4) > .picture_svg_wrapper > .svg > svg",
+    "pictureSelector5": ":nth-child(5) > .picture_svg_wrapper > .svg > svg",
+    "pictureSelector6": ":nth-child(6) > .picture_svg_wrapper > .svg > svg",
+    "pictureSelector7": ":nth-child(7) > .picture_svg_wrapper > .svg > svg",
+    "pictureSelector8": ":nth-child(8) > .picture_svg_wrapper > .svg > svg",
+    "pictureSelector9": ":nth-child(9) > .picture_svg_wrapper > .svg > svg",
+    "pictureSelector10": ":nth-child(10) > .picture_svg_wrapper > .svg > svg",
+    "pictureSelector11": ":nth-child(11) > .picture_svg_wrapper > .svg > svg",
+    "pictureSelector12": ":nth-child(12) > .picture_svg_wrapper > .svg > svg",
+    "pictureSelector13": ":nth-child(13) > .picture_svg_wrapper > .svg > svg",
+    "btnArrow": ".btn-arrow-right",
+    "cashLimitSelector": ".MuiGrid-grid-xs-5 > .frm-wrapper > .frm",
+    "cashLimitCurrencySelector": ".MuiGrid-grid-xs-7 > .frm-wrapper > .frm"
+
+}
