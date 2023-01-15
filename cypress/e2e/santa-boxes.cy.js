@@ -24,8 +24,9 @@ describe("actions with boxes", () => {
         })
 
         it("create new box without cash limit", () => {
+
             let newBox = new createBox();
-            cy.get(createBoxElements.btnToCreateBox).click().debug();
+            cy.get(createBoxElements.btnToCreateBox).click({force: true});
             newBox.goToStep1(nameBox, idBox);
             newBox.goToStep2(createBoxElements.pictureSelector1);
             newBox.goToStep3WithoutLimit();
@@ -105,6 +106,60 @@ describe("actions with boxes", () => {
 
   
 })
+
+    context("create boxes - negative tests", () => {
+
+        let nameBox = faker.word.noun();
+        let idBox = faker.random.alphaNumeric(6);
+        let ApiUrl = Cypress.config('baseUrl') + "api/box/" + idBox;
+
+        beforeEach(() => {
+        cy.login("tanyajoooe@gmail.com", "12345678");
+        cy.contains("Коробки").should("exist").click({force: true});
+        });
+
+
+        it.only("create new box with cash limit '0'", () => {
+
+            let newBox = new createBox();
+            cy.get(createBoxElements.btnToCreateBox).click();
+            newBox.goToStep1(nameBox, idBox);
+            newBox.goToStep2(createBoxElements.pictureSelector2);
+            newBox.goToStep3WithInvalidLimit(0, 'rub');
+            
+        })
+
+        it("create new box with cash limit '1000000'", () => {
+
+            let newBox = new createBox();
+            cy.get(createBoxElements.btnToCreateBox).click();
+            newBox.goToStep1(nameBox, idBox);
+            newBox.goToStep2(createBoxElements.pictureSelector2);
+            newBox.goToStep3WithInvalidLimit(1000000, 'rub');
+            
+        })
+
+        it("create new box with cash limit '1000001'", () => {
+
+            let newBox = new createBox();
+            cy.get(createBoxElements.btnToCreateBox).click();
+            newBox.goToStep1(nameBox, idBox);
+            newBox.goToStep2(createBoxElements.pictureSelector2);
+            newBox.goToStep3WithInvalidLimit(1000001, 'rub');
+            
+        })
+
+        it("create new box with cash limit '50045000001'", () => {
+
+            let newBox = new createBox();
+            cy.get(createBoxElements.btnToCreateBox).click();
+            newBox.goToStep1(nameBox, idBox);
+            newBox.goToStep2(createBoxElements.pictureSelector2);
+            newBox.goToStep3WithInvalidLimit(50045000001, 'rub');
+            
+        })
+
+    })
 
     context("edit boxes", () => {
        let nameBox = faker.word.noun();

@@ -50,6 +50,21 @@ export class createBox {
 
     }
 
+    goToStep3WithInvalidLimit(sumLimit, currensy) {
+        cy.contains("Стоимость подарков").should("exist");
+        cy.contains("Шаг 3 из 5").should("exist");
+        this.elements.switchCashLimit().click();
+        this.elements.cashLimitField().should("exist");
+        this.elements.cashLimitCurrencyField().should("exist");
+        this.elements.cashLimitCurrencyField().should('have.value', 'rub');
+        this.elements.cashLimitField().type(sumLimit);
+        this.elements.cashLimitCurrencyField().select(currensy);
+        this.elements.cashLimitCurrencyField().should('have.value', currensy);
+        this.elements.btnArrow().click();
+        cy.contains("В форме допущены ошибки").should('exist');
+
+    }
+
     goToStep4() {
         cy.contains("Дополнительные настройки").should("exist");
         cy.contains("Шаг 4 из 5").should("exist");
