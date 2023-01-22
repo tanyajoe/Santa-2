@@ -1,5 +1,5 @@
 {
-    "btnToCreateBox": ".toggle-menu-button--inner",
+    "btnToCreateBox": ".toggle-menu-button--inner > .svg > svg",
     "pictureSelector1": ":nth-child(1) > .picture_svg_wrapper > .svg > svg",
     "pictureSelector2": ":nth-child(2) > .picture_svg_wrapper > .svg > svg",
     "pictureSelector3": ":nth-child(3) > .picture_svg_wrapper > .svg > svg",

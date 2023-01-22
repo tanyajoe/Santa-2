@@ -7,6 +7,7 @@
     "cy:open:stage": "npx cypress open --config-file cypress-staging.config.js",
     "cy:open:prod": "npx cypress open --config-file cypress-prod.config.js",
     "cy:run:stage": "npx cypress run --config-file cypress-staging.config.js",
+    "cy:run:stage:spec": "npx cypress run --config-file cypress-staging.config.js --spec cypress/e2e/santa-boxes.cy.js",
     "cy:run:prod": "npx cypress run --config-file cypress-prod.config.js",
     "cy:stage:dashboard": "npx cypress run --config-file cypress-staging.config.js --record --key dfd323b2-baf8-4830-827c-a313a25ae33b",
     "cy:prod:dashboard": "npx cypress run --config-file cypress-prod.config.js --record --key dfd323b2-baf8-4830-827c-a313a25ae33b",

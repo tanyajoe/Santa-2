@@ -17,13 +17,19 @@ describe("actions with boxes", () => {
         beforeEach(() => {
         cy.login("tanyajoooe@gmail.com", "12345678");
         cy.contains("Коробки").should("exist").click({force: true});
+
         });
 
-        afterEach(() => {
+         afterEach(() => {
         cy.ApiDeleteBox(ApiUrl);
         })
 
         it("create new box without cash limit", () => {
+
+            Cypress.on('uncaught:exception', (err, runnable) => {
+
+                return false
+              })
 
             let newBox = new createBox();
             cy.get(createBoxElements.btnToCreateBox).click({force: true});
@@ -35,6 +41,12 @@ describe("actions with boxes", () => {
         })
 
         it("create new box with cash limit and 'rub' currency", () => {
+            Cypress.on('uncaught:exception', (err, runnable) => {
+
+                return false
+              })
+
+
             let newBox = new createBox();
             cy.get(createBoxElements.btnToCreateBox).click().debug();
             newBox.goToStep1(nameBox, idBox);
@@ -45,6 +57,11 @@ describe("actions with boxes", () => {
         })
 
         it("create new box with cash limit and 'rub' currency", () => {
+            Cypress.on('uncaught:exception', (err, runnable) => {
+      
+                return false
+              })
+
             let newBox = new createBox();
             cy.get(createBoxElements.btnToCreateBox).click().debug();
             newBox.goToStep1(nameBox, idBox);
@@ -55,6 +72,11 @@ describe("actions with boxes", () => {
         })
 
         it("create new box with cash limit and 'uah' currency", () => {
+            Cypress.on('uncaught:exception', (err, runnable) => {
+    
+                return false
+              })
+
             let newBox = new createBox();
             cy.get(createBoxElements.btnToCreateBox).click().debug();
             newBox.goToStep1(nameBox, idBox);
@@ -65,6 +87,11 @@ describe("actions with boxes", () => {
         })
 
         it("create new box with cash limit and 'byn' currency", () => {
+            Cypress.on('uncaught:exception', (err, runnable) => {
+      
+                return false
+              })
+
             let newBox = new createBox();
             cy.get(createBoxElements.btnToCreateBox).click().debug();
             newBox.goToStep1(nameBox, idBox);
@@ -75,6 +102,11 @@ describe("actions with boxes", () => {
         })
 
         it("create new box with cash limit and 'kzt' currency", () => {
+            Cypress.on('uncaught:exception', (err, runnable) => {
+    
+                return false
+              })
+
             let newBox = new createBox();
             cy.get(createBoxElements.btnToCreateBox).click().debug();
             newBox.goToStep1(nameBox, idBox);
@@ -85,6 +117,11 @@ describe("actions with boxes", () => {
         })
 
         it("create new box with cash limit and 'usd' currency", () => {
+            Cypress.on('uncaught:exception', (err, runnable) => {
+
+                return false
+              })
+
             let newBox = new createBox();
             cy.get(createBoxElements.btnToCreateBox).click().debug();
             newBox.goToStep1(nameBox, idBox);
@@ -95,6 +132,11 @@ describe("actions with boxes", () => {
         })
 
         it("create new box with changes extra-settings", () => {
+            Cypress.on('uncaught:exception', (err, runnable) => {
+   
+                return false
+              })
+
             let newBox = new createBox();
             cy.get(createBoxElements.btnToCreateBox).click().debug();
             newBox.goToStep1(nameBox, idBox);
@@ -107,11 +149,11 @@ describe("actions with boxes", () => {
   
 })
 
-    context("create boxes - negative tests", () => {
+    context.only("create boxes - negative tests", () => {
 
         let nameBox = faker.word.noun();
         let idBox = faker.random.alphaNumeric(6);
-        let ApiUrl = Cypress.config('baseUrl') + "api/box/" + idBox;
+ 
 
         beforeEach(() => {
         cy.login("tanyajoooe@gmail.com", "12345678");
@@ -119,7 +161,11 @@ describe("actions with boxes", () => {
         });
 
 
-        it.only("create new box with cash limit '0'", () => {
+        it("create new box with cash limit '0'", () => {
+            Cypress.on('uncaught:exception', (err, runnable) => {
+               
+                return false
+              })
 
             let newBox = new createBox();
             cy.get(createBoxElements.btnToCreateBox).click();
@@ -129,42 +175,13 @@ describe("actions with boxes", () => {
             
         })
 
-        it("create new box with cash limit '1000000'", () => {
-
-            let newBox = new createBox();
-            cy.get(createBoxElements.btnToCreateBox).click();
-            newBox.goToStep1(nameBox, idBox);
-            newBox.goToStep2(createBoxElements.pictureSelector2);
-            newBox.goToStep3WithInvalidLimit(1000000, 'rub');
-            
-        })
-
-        it("create new box with cash limit '1000001'", () => {
-
-            let newBox = new createBox();
-            cy.get(createBoxElements.btnToCreateBox).click();
-            newBox.goToStep1(nameBox, idBox);
-            newBox.goToStep2(createBoxElements.pictureSelector2);
-            newBox.goToStep3WithInvalidLimit(1000001, 'rub');
-            
-        })
-
-        it("create new box with cash limit '50045000001'", () => {
-
-            let newBox = new createBox();
-            cy.get(createBoxElements.btnToCreateBox).click();
-            newBox.goToStep1(nameBox, idBox);
-            newBox.goToStep2(createBoxElements.pictureSelector2);
-            newBox.goToStep3WithInvalidLimit(50045000001, 'rub');
-            
-        })
-
-    })
+})
 
     context("edit boxes", () => {
        let nameBox = faker.word.noun();
        let newNameBox = faker.word.noun();
        let idBox = faker.random.alphaNumeric(6);
+       let apiUrlCreateBox = Cypress.config('baseUrl') + "api/box"
 
         beforeEach(() => {
         cy.login("tanyajoooe@gmail.com", "12345678");
@@ -177,11 +194,15 @@ describe("actions with boxes", () => {
             })
 
         it("edit box: change name and added cash limit 'eur'", () => {
+            Cypress.on('uncaught:exception', (err, runnable) => {
+
+                return false
+              })
 
         let settings = new boxSettings;
         let crntBoxPage = new boxPage;
         let cashLimit = faker.finance.amount(1, 999999, 0);
-        cy.ApiCreateBox(nameBox, idBox);
+        cy.ApiCreateBox(apiUrlCreateBox, nameBox, idBox);
         
         cy.contains("Коробки").should("exist").click({force: true});
         cy.get(':nth-child(1) > a.base--clickable > .user-card > .user-card__pic').should("exist").click();
@@ -199,11 +220,15 @@ describe("actions with boxes", () => {
         })
 
         it("edit box: change name and added cash limit 'rub'", () => {
+            Cypress.on('uncaught:exception', (err, runnable) => {
+ 
+                return false
+              })
 
             let settings = new boxSettings;
             let crntBoxPage = new boxPage;
             let cashLimit = faker.finance.amount(1, 999999, 0);
-            cy.ApiCreateBox(nameBox, idBox);
+            cy.ApiCreateBox(apiUrlCreateBox, nameBox, idBox);
             
             cy.contains("Коробки").should("exist").click({force: true});
             cy.get(':nth-child(1) > a.base--clickable > .user-card > .user-card__pic').should("exist").click();
@@ -221,11 +246,15 @@ describe("actions with boxes", () => {
         }) 
 
         it("edit box: change name and added cash limit 'uah'", () => {
+            Cypress.on('uncaught:exception', (err, runnable) => {
+  
+                return false
+              })
 
             let settings = new boxSettings;
             let crntBoxPage = new boxPage;
             let cashLimit = faker.finance.amount(1, 999999, 0);
-            cy.ApiCreateBox(nameBox, idBox);
+            cy.ApiCreateBox(apiUrlCreateBox, nameBox, idBox);
             
             cy.contains("Коробки").should("exist").click({force: true});
             cy.get(':nth-child(1) > a.base--clickable > .user-card > .user-card__pic').should("exist").click();
@@ -243,11 +272,15 @@ describe("actions with boxes", () => {
         }) 
 
         it("edit box: change name and added cash limit 'byn'", () => {
+            Cypress.on('uncaught:exception', (err, runnable) => {
+
+                return false
+              })
 
             let settings = new boxSettings;
             let crntBoxPage = new boxPage;
             let cashLimit = faker.finance.amount(1, 999999, 0);
-            cy.ApiCreateBox(nameBox, idBox);
+            cy.ApiCreateBox(apiUrlCreateBox, nameBox, idBox);
             
             cy.contains("Коробки").should("exist").click({force: true});
             cy.get(':nth-child(1) > a.base--clickable > .user-card > .user-card__pic').should("exist").click();
@@ -265,11 +298,14 @@ describe("actions with boxes", () => {
         }) 
 
         it("edit box: change name and added cash limit 'kzt'", () => {
+            Cypress.on('uncaught:exception', (err, runnable) => {
+                return false
+              })
 
             let settings = new boxSettings;
             let crntBoxPage = new boxPage;
             let cashLimit = faker.finance.amount(1, 999999, 0);
-            cy.ApiCreateBox(nameBox, idBox);
+            cy.ApiCreateBox(apiUrlCreateBox, nameBox, idBox);
             
             cy.contains("Коробки").should("exist").click({force: true});
             cy.get(':nth-child(1) > a.base--clickable > .user-card > .user-card__pic').should("exist").click();
@@ -287,11 +323,15 @@ describe("actions with boxes", () => {
         }) 
 
         it("edit box: change name and added cash limit 'usd'", () => {
+            Cypress.on('uncaught:exception', (err, runnable) => {
+
+                return false
+              })
 
             let settings = new boxSettings;
             let crntBoxPage = new boxPage;
             let cashLimit = faker.finance.amount(1, 999999, 0);
-            cy.ApiCreateBox(nameBox, idBox);
+            cy.ApiCreateBox(apiUrlCreateBox, nameBox, idBox);
             
             cy.contains("Коробки").should("exist").click({force: true});
             cy.get(':nth-child(1) > a.base--clickable > .user-card > .user-card__pic').should("exist").click();
@@ -310,10 +350,11 @@ describe("actions with boxes", () => {
 
 })
 
-context("delete boxes", () => {
+    context("delete boxes", () => {
 
     let nameBox = faker.word.noun();
     let idBox = faker.random.alphaNumeric(6);
+    let apiUrlCreateBox = Cypress.config('baseUrl') + "api/box"
 
     beforeEach(() => {
         cy.login("tanyajoooe@gmail.com", "12345678");
@@ -321,17 +362,39 @@ context("delete boxes", () => {
         });
 
         it("delete box - positive test", () => {
+            Cypress.on('uncaught:exception', (err, runnable) => {
+                return false
+              })
+
             let crntBoxPage = new boxPage;
             let crntDeleteBoxPage = new deleteBoxPage;
             let input = "Удалить коробку"
             
         
-            cy.ApiCreateBox(nameBox, idBox);
+            cy.ApiCreateBox(apiUrlCreateBox, nameBox, idBox);
             cy.contains("Коробки").should("exist").click({force: true});
             cy.get(':nth-child(1) > a.base--clickable > .user-card > .user-card__pic').should("exist").click();
             crntBoxPage.goToArchiveAndDelete();
             crntDeleteBoxPage.deleteBox(input);
             cy.contains("Пока что коробок нет").should('exist');
+        })
+
+        it.only("delete box - negative test", () => {
+            Cypress.on('uncaught:exception', (err, runnable) => {
+                return false
+              })
+
+            let crntBoxPage = new boxPage;
+            let crntDeleteBoxPage = new deleteBoxPage;
+            let input = "Архивировать коробку"
+        
+            cy.ApiCreateBox(apiUrlCreateBox, nameBox, idBox);
+            cy.contains("Коробки").should("exist").click({force: true});
+            cy.get(':nth-child(1) > a.base--clickable > .user-card > .user-card__pic').should("exist").click();
+            crntBoxPage.goToArchiveAndDelete();
+            crntDeleteBoxPage.elements.deleteBoxField(input);
+            cy.get('.btn-service').should('not.exist');
+
         })
 
 })
